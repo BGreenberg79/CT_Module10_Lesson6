@@ -11,10 +11,10 @@ let listContainer = document.querySelector(".list");
 let date = new Date();
 console.log(date.getTime());
 
-let ts = date;
-let publicKey ="d439bcb5d546b0de1cbff183b2365de5"
-let privateKey = "b4f967f271fbc92b00eed71fe6180d2c5fad88fd"
-let hashVal ="3fe5c988438c73b5ca517fe98be46e24"
+let ts = "1728768095246";
+let publicKey ="d439bcb5d546b0de1cbff183b2365de5";
+let privateKey = "b4f967f271fbc92b00eed71fe6180d2c5fad88fd";
+let hashVal ="77a953b9de082568b4b060eb0cfe1598";
 
 function fetchCharacter(callback){
     button.addEventListener("click", (getResult = async() => {
@@ -36,7 +36,7 @@ function fetchCharacter(callback){
 
 const feedToHTML = (error, characterData) => {
     const dataInfoId = document.getElementById('display-container');
-
+    console.log(characterData)
     if (error) {
         dataInfoId.innerHTML = `<p>Error Fetching Character Data: ${error.message}</p>`;
     } 
@@ -49,4 +49,4 @@ const updatePage = () => {
     fetchCharacter(feedToHTML);
 };
 
-updatePage();
+document.addEventListener("DOMContentLoaded", (event) => {updatePage()});
