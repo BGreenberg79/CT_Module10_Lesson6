@@ -1,11 +1,11 @@
 // Task 1 Obtain API Key and configuration
 // Public API Key is d439bcb5d546b0de1cbff183b2365de5
 
-// Task 2 Fetching Characters Using Fetch API
+// Task 2 Fetching Characters Using Fetch API and Task 3 Update User Interface Dynamically
 
 let input= document.getElementById("input-box");
 let button = document.getElementById("submit-button");
-let showContainer = document.getElementById("show-container");
+let displayContainer = document.getElementById("display-container");
 let listContainer = document.querySelector(".list");
 
 let date = new Date();
@@ -21,7 +21,8 @@ function fetchCharacter(callback){
         if (input.value.trim().length < 1){
             alert("Input cannot be empty");
         }
-        showContainer.innerHTML = "";
+        let displayContainer = document.getElementById("display-container");
+        displayContainer.innerHTML = "";
         const apiMarvelURL = `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hashVal}&name=${input.value}`;
         
         try {const response = await fetch(apiMarvelURL);
@@ -31,7 +32,6 @@ function fetchCharacter(callback){
         catch (error) {
             callback(error, null);
         };
-        console.log(characterData);
 }))}
 
 const feedToHTML = (error, characterData) => {
@@ -41,7 +41,9 @@ const feedToHTML = (error, characterData) => {
         dataInfoId.innerHTML = `<p>Error Fetching Character Data: ${error.message}</p>`;
     } 
     else {
-        dataInfoId.innerHTML = `<p>Character Data: ${characterData.message}</p>`;
+        dataInfoId.innerHTML = `<p>Name:${characterData.data.results[0].name}</p>
+        <img src=${characterData.data.results[0].thumbnail.path}.jpg>`;
+        
     };
 };
 
