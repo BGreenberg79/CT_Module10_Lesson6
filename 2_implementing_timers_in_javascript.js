@@ -9,17 +9,21 @@ var startTimer = null;
 // Task 1 Countdown Timer
 
 function setTimer() {
-    if (inputHours == 0 && inputMinutes == 0 && inputSeconds == 0 ){
+    if (inputHours.value == 0 && inputMinutes.value == 0 && inputSeconds.value== 0 ){
         inputHours.value = 0;
         inputMinutes.value = 0;
-        inputSeconds = 0;
+        inputSeconds.value = 0;
+        stop();
+        clearInterval(notifyInterval);
     }
     else if (inputSeconds.value != 0 ){inputSeconds.value --;}
-    else if (inputSeconds == 0 && inputMinutes.value != 0) {
+    else if (inputSeconds.value == 0 && inputMinutes.value != 0) {
         inputSeconds.value = 59;
         inputMinutes.value--;
+        notifyInterval = setInterval(()=>alert("One minute has passed"), 60000);
     }
     else if (inputHours.value != 0 && inputMinutes.value == 0 && inputSeconds.value == 0) {
+        inputSeconds.value =59;
         inputMinutes.value =59;
         inputHours.value--;
     }
@@ -27,6 +31,7 @@ function setTimer() {
 
 function stop(){
     clearInterval(startTimer);
+    setTimeout(()=>alert("Timer has expired"), 2000);
 }
 
 startButton.addEventListener('click', function(){
@@ -39,8 +44,12 @@ startButton.addEventListener('click', function(){
 resetButton.addEventListener('click', function(){
     inputHours.value = 0;
     inputMinutes.value = 0;
-    inputSeconds = 0;
+    inputSeconds.value = 0;
     stop() 
 })
 
 
+// Task 2 Delayed Notification
+// See line 32
+// Task 3 Repeat Notification
+// See Lines 23 and 17
