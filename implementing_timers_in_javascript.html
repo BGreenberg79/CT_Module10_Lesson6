@@ -10,7 +10,14 @@
     </head>
 </html>
 <body>
-    <div id="data-container">
-        
+    <div id="input-box">
+        <label for="hours">Hours:</label>
+        <input type="number" name="hours" id="hours" placeholder="00">
+        <label for="minutes">Minutes:</label>
+        <input type="number" name="minutes" id="minutes" placeholder="00" max="60" min="0">
+        <label for="seconds">Seconds:</label>
+        <input type="number" name="seconds" id="seconds" placeholder="00" max="60" min="0">
+        <button id="start" onclick="setTimer()">Start</button>
+        <button id="reset" onclick="stop()">Reset</button>
     </div>
 </body>
